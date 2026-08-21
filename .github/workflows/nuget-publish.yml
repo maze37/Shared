@@ -20,7 +20,7 @@ jobs:
         run: dotnet build -c Release
 
       - name: Pack SharedKernel
-        run: dotnet pack SharedKernel/SharedKernel.csproj -c Release --no-build --output ./nupkgs
+        run: dotnet pack Shared.SharedKernel/Shared.SharedKernel.csproj -c Release --no-build --output ./nupkgs
 
       - name: Push to NuGet
         run: >
