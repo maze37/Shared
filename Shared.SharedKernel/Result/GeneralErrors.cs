@@ -1,0 +1,16 @@
+﻿namespace Shared.Result;
+
+public static class GeneralErrors
+{
+    public static Error ValueIsRequired(string? field)
+    {
+        var label = field ?? "value";
+        return Error.Validation($"{label}.is.required", $"{label} is required", field);
+    }
+
+    public static Error ValueIsInvalid(string? field, string message)
+    {
+        var label = field ?? "value";
+        return Error.Validation($"{label}.is.invalid", message, field);
+    }
+}
