@@ -34,14 +34,14 @@ public record Error
 
     public string Serialize()
     {
-        return string.Join(SEPARATOR, Code, Message, Type);
+        return string.Join(SEPARATOR, Code, Message, Type, InvalidField ?? string.Empty);
     }
 
     public static Error Deserialize(string serialized)
     {
         var parts = serialized.Split(SEPARATOR);
 
-        if (parts.Length < 3)
+        if (parts.Length < 4)
         {
             throw new ArgumentException("Invalid serialized format");
         }
@@ -51,7 +51,9 @@ public record Error
             throw new ArgumentException("Invalid serialized format");
         }
 
-        return new Error(parts[0], parts[1], type);
+        var invalidField = string.IsNullOrEmpty(parts[3]) ? null : parts[3];
+
+        return new Error(parts[0], parts[1], type, invalidField);
     }
 
     public ErrorList ToErrorList() => new([this]);
