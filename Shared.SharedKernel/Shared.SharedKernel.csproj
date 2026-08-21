@@ -11,8 +11,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\artifacts\bin\Shared.Core\release\Shared.Core.dll" Pack="true" PackagePath="lib\net9.0" />
-    <None Include="..\artifacts\bin\Shared.Framework\release\Shared.Framework.dll" Pack="true" PackagePath="lib\net9.0" />
+    <None Include="..\artifacts\bin\Core\release*\*.dll" Pack="true" PackagePath="lib\net9.0" />
+    <None Include="..\artifacts\bin\Framework\release*\*.dll" Pack="true" PackagePath="lib\net9.0" />
   </ItemGroup>
 
 </Project>
