@@ -8,11 +8,20 @@
     <Description>SharedKernel package containing Core and Framework modules for Mazeland projects.</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/maze37/Shared</RepositoryUrl>
+
+    <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);IncludeReferencedProjectsInPackage</TargetsForTfmSpecificBuildOutput>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\artifacts\bin\Core\release*\*.dll" Pack="true" PackagePath="lib\net9.0" />
-    <None Include="..\artifacts\bin\Framework\release*\*.dll" Pack="true" PackagePath="lib\net9.0" />
+    <ProjectReference Include="..\Core\Core.csproj" PrivateAssets="all" />
+    <ProjectReference Include="..\Framework\Framework.csproj" PrivateAssets="all" />
   </ItemGroup>
+
+  <Target Name="IncludeReferencedProjectsInPackage">
+    <ItemGroup>
+      <BuildOutputInPackage Include="$(OutputPath)Core.dll" Condition="Exists('$(OutputPath)Core.dll')" />
+      <BuildOutputInPackage Include="$(OutputPath)Framework.dll" Condition="Exists('$(OutputPath)Framework.dll')" />
+    </ItemGroup>
+  </Target>
 
 </Project>
