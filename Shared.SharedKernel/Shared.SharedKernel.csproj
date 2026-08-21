@@ -1,10 +1,23 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <TargetFramework>net10.0</TargetFramework>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
-        <RootNamespace>Shared</RootNamespace>
-    </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>Shared</RootNamespace>
+
+    <PackageId>Mazeland.SharedKernel</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>Mazeland</Authors>
+    <Company>Mazeland</Company>
+    <Description>SharedKernel package containing Core and Framework modules for Mazeland projects.</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/maze37/Shared</RepositoryUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\Core\bin\$(Configuration)\net10.0\Core.dll" Pack="true" PackagePath="lib\net10.0" />
+    <None Include="..\Framework\bin\$(Configuration)\net10.0\Framework.dll" Pack="true" PackagePath="lib\net10.0" />
+  </ItemGroup>
 
 </Project>
