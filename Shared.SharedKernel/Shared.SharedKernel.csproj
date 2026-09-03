@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <PackageId>Mazeland.SharedKernel</PackageId>
+    <PackageId>maze.SharedKernel</PackageId>
     <Authors>maze37</Authors>
-    <Company>Mazeland</Company>
+    <Company>maze</Company>
     <Description>Shared Kernel library for microservices</Description>
     <RepositoryUrl>https://github.com/maze37/Shared</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <Version>20.0.0</Version>
+    <Version>1.0.0</Version>
   </PropertyGroup>
   
 </Project>
