@@ -5,23 +5,9 @@
     <Authors>maze37</Authors>
     <Company>Mazeland</Company>
     <Description>Shared Kernel library for microservices</Description>
-    
     <RepositoryUrl>https://github.com/maze37/Shared</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    
     <Version>1.0.0</Version>
   </PropertyGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Core\Core.csproj" PrivateAssets="all" />
-    <ProjectReference Include="..\Framework\Framework.csproj" PrivateAssets="all" />
-  </ItemGroup>
-
-  <Target Name="IncludeReferencedProjectsInPackage">
-    <ItemGroup>
-      <BuildOutputInPackage Include="$(OutputPath)Core.dll" Condition="Exists('$(OutputPath)Core.dll')" />
-      <BuildOutputInPackage Include="$(OutputPath)Framework.dll" Condition="Exists('$(OutputPath)Framework.dll')" />
-    </ItemGroup>
-  </Target>
-
+  
 </Project>

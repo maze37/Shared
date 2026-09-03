@@ -3,13 +3,12 @@
 on:
   push:
     tags:
-      - 'v*' # Запуск только когда ты создаешь тег версии, например v1.0.0
+      - 'v*'
 
 jobs:
   publish:
     runs-on: ubuntu-latest
     
-    # Даем права GitHub Actions на запись пакетов в твой репозиторий
     permissions:
       contents: read
       packages: write
@@ -21,13 +20,17 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '9.0.x'
+          dotnet-version: '9.0.x' # Фиксируем стабильный релиз .NET 9
+
+      - name: Restore dependencies
+        run: dotnet restore Shared.slnx
 
       - name: Build Solution
-        run: dotnet build -c Release
+        run: dotnet build Shared.slnx -c Release --no-restore
 
+      # Собираем конкретно проект ядра, теперь он без циклов и соберется легко
       - name: Pack SharedKernel
-        run: dotnet pack Shared.SharedKernel/Shared.SharedKernel.csproj -c Release --output ./nupkgs
+        run: dotnet pack Shared.SharedKernel/Shared.SharedKernel.csproj -c Release --output ./nupkgs --no-build
 
       - name: Push to GitHub Packages
         run: >
