@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <PackageId>maze.SharedKernel</PackageId>
+    <PackageId>Mazeland.SharedKernel</PackageId>
     <Authors>maze37</Authors>
-    <Company>maze</Company>
+    <Company>Mazeland</Company>
     <Description>Shared Kernel library for microservices</Description>
     <RepositoryUrl>https://github.com/maze37/Shared</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
