@@ -20,7 +20,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '9.0.x' # Фиксируем стабильный релиз .NET 9
+          dotnet-version: '9.0.x'
 
       - name: Restore dependencies
         run: dotnet restore Shared.slnx
@@ -28,7 +28,6 @@ jobs:
       - name: Build Solution
         run: dotnet build Shared.slnx -c Release --no-restore
 
-      # Собираем конкретно проект ядра, теперь он без циклов и соберется легко
       - name: Pack SharedKernel
         run: dotnet pack Shared.SharedKernel/Shared.SharedKernel.csproj -c Release --output ./nupkgs --no-build
 
