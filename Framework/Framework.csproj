@@ -8,4 +8,15 @@
       <ProjectReference Include="..\Shared.SharedKernel\Shared.SharedKernel.csproj" />
     </ItemGroup>
 
+  <PropertyGroup>
+    <PackageId>Mazeland.Framework</PackageId>
+    <Version>1.0.0</Version>
+    <Description>Framework layer for Mazeland</Description>
+    <Authors>maze37</Authors>
+    <RepositoryUrl>https://github.com/maze37/Shared</RepositoryUrl>
+    <PackageTags>framework infrastructure</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
 </Project>

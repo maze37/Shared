@@ -1,13 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <PackageId>Mazeland.SharedKernel</PackageId>
-    <Authors>maze37</Authors>
-    <Company>Mazeland</Company>
-    <Description>Shared Kernel library for microservices</Description>
-    <RepositoryUrl>https://github.com/maze37/Shared</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
     <Version>1.0.0</Version>
+    <Description>Shared kernel with domain entities and base classes for Mazeland</Description>
+    <Authors>maze37</Authors>
+    <RepositoryUrl>https://github.com/maze37/Shared</RepositoryUrl>
+    <PackageTags>shared kernel domain ddd</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
-  
 </Project>

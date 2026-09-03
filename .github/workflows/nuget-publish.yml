@@ -1,4 +1,4 @@
-name: Publish Mazeland.SharedKernel
+name: Publish Mazeland Packages
 
 on:
   push:
@@ -28,13 +28,12 @@ jobs:
       - name: Build Solution
         run: dotnet build Shared.slnx -c Release --no-restore
 
-      - name: Pack SharedKernel
-        run: dotnet pack Shared.SharedKernel/Shared.SharedKernel.csproj -c Release --output ./nupkgs --no-build
+      - name: Pack all projects
+        run: dotnet pack Shared.slnx -c Release --output ./nupkgs --no-build
 
       - name: Push to GitHub Packages
         run: >
           dotnet nuget push ./nupkgs/*.nupkg 
-          --source "https://nuget.pkg.github.com/maze37/index.json"
+          --source "https://nuget.pkg.github.com/maze37/index.json" 
           --api-key "${{ secrets.GITHUB_TOKEN }}" 
           --skip-duplicate
-      

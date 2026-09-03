@@ -11,4 +11,15 @@
       <ProjectReference Include="..\Shared.SharedKernel\Shared.SharedKernel.csproj" />
     </ItemGroup>
 
+  <PropertyGroup>
+    <PackageId>Mazeland.Core</PackageId>
+    <Version>1.0.0</Version>
+    <Description>Core business logic for Mazeland</Description>
+    <Authors>maze37</Authors>
+    <RepositoryUrl>https://github.com/maze37/Shared</RepositoryUrl>
+    <PackageTags>core domain logic</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
 </Project>
