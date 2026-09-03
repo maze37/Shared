@@ -2,14 +2,14 @@
 
   <PropertyGroup>
     <PackageId>Mazeland.SharedKernel</PackageId>
-    <Version>1.0.0</Version>
-    <Authors>Mazeland</Authors>
+    <Authors>maze37</Authors>
     <Company>Mazeland</Company>
-    <Description>SharedKernel package containing Core and Framework modules for Mazeland projects.</Description>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Description>Shared Kernel library for microservices</Description>
+    
     <RepositoryUrl>https://github.com/maze37/Shared</RepositoryUrl>
-
-    <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);IncludeReferencedProjectsInPackage</TargetsForTfmSpecificBuildOutput>
+    <RepositoryType>git</RepositoryType>
+    
+    <Version>1.0.0</Version>
   </PropertyGroup>
 
   <ItemGroup>

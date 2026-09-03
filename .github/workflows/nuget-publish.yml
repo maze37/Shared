@@ -3,13 +3,20 @@
 on:
   push:
     tags:
-      - 'v*'
+      - 'v*' # Запуск только когда ты создаешь тег версии, например v1.0.0
 
 jobs:
   publish:
     runs-on: ubuntu-latest
+    
+    # Даем права GitHub Actions на запись пакетов в твой репозиторий
+    permissions:
+      contents: read
+      packages: write
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
@@ -22,9 +29,9 @@ jobs:
       - name: Pack SharedKernel
         run: dotnet pack Shared.SharedKernel/Shared.SharedKernel.csproj -c Release --output ./nupkgs
 
-      - name: Push to NuGet
+      - name: Push to GitHub Packages
         run: >
           dotnet nuget push ./nupkgs/*.nupkg 
-          --source https://api.nuget.org/v3/index.json 
-          --api-key ${{ secrets.nuget-publish }} 
+          --source "https://github.com" 
+          --api-key "${{ secrets.GITHUB_TOKEN }}" 
           --skip-duplicate
