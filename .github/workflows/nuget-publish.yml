@@ -1,4 +1,4 @@
-﻿name: Publish Mazeland.SharedKernel
+name: Publish Mazeland.SharedKernel
 
 on:
   push:
@@ -37,3 +37,4 @@ jobs:
           --source "https://github.com" 
           --api-key "${{ secrets.GITHUB_TOKEN }}" 
           --skip-duplicate
+      
