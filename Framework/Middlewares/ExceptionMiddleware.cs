@@ -1,8 +1,9 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System.Security.Authentication;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using Shared.Exceptions;
-using Shared.Result;
+using SharedKernel;
+using SharedKernel.Exceptions;
 
 namespace Framework.Middlewares;
 
@@ -31,18 +32,26 @@ public class ExceptionMiddleware
 
     private async Task HandleExceptionAsync(HttpContext context, Exception exception)
     {
-        _logger.LogError(exception, exception.Message);
+        _logger.LogError(exception, "Exception was thrown in education service");
 
         (int statusCode, Error error) = exception switch
         {
             NotFoundException ex => (StatusCodes.Status404NotFound, ex.Error),
+
             ValidationException ex => (StatusCodes.Status400BadRequest, ex.Error),
-            FailureException ex => (StatusCodes.Status500InternalServerError, ex.Error),
+
             ConflictException ex => (StatusCodes.Status409Conflict, ex.Error),
+
+            FailureException ex => (StatusCodes.Status500InternalServerError, ex.Error),
+
+            AuthenticationException => (StatusCodes.Status401Unauthorized, Error.Failure("authentication.failed", exception.Message)),
+
+            BadHttpRequestException => (StatusCodes.Status400BadRequest, Error.Validation("request.invalid", exception.Message)),
+
             _ => (StatusCodes.Status500InternalServerError, Error.Failure("server.internal", exception.Message))
         };
 
-        var envelope = Envelope.Error(error);
+        var envelope = Envelope.Fail(error);
         context.Response.ContentType = "application/json";
         context.Response.StatusCode = statusCode;
 

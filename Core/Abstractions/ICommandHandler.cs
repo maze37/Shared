@@ -1,5 +1,5 @@
-using Shared.Result;
 using CSharpFunctionalExtensions;
+using SharedKernel;
 
 namespace Core.Abstractions;
 

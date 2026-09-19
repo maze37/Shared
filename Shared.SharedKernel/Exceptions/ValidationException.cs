@@ -1,26 +1,26 @@
-﻿using Shared.Result;
-
-namespace Shared.Exceptions;
+﻿namespace SharedKernel.Exceptions;
 
 public class ValidationException : Exception
 {
-    public Error Error { get; }
+    public Error Error { get; } = null!;
 
-    public ValidationException(Error error) : base(error.Message) 
+    public ValidationException(Error error)
+        : base(error.GetMessage())
     {
         Error = error;
     }
-    
-    public ValidationException() : this("Validation error") { }
 
-    public ValidationException(string message) : base(message) 
+    public ValidationException()
     {
-        Error = Error.Validation("validation.error", message);
+    }
+
+    public ValidationException(string message)
+        : base(message)
+    {
     }
 
     public ValidationException(string message, Exception innerException)
-        : base(message, innerException) 
+        : base(message, innerException)
     {
-        Error = Error.Validation("validation.error", message);
     }
 }

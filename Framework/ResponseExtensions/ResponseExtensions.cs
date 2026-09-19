@@ -1,38 +1,25 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Shared.Result;
+using SharedKernel;
 
 namespace Framework.ResponseExtensions;
 
 public static class ResponseExtensions
 {
-    public static ActionResult ToResponse(this Error error)
-    {
-        var statusCode = GetStatusCodeFromErrorType(error.Type);
-
-        return new ObjectResult(Envelope.Error(error))
+    public static ActionResult ToResponse(this Error error) =>
+        new ObjectResult(Envelope.Fail(error))
         {
-            StatusCode = statusCode,
+            StatusCode = GetStatusCodeFromErrorType(error.Type),
         };
-    }
-    
-    public static ActionResult ToResponse(this ErrorList errors)
-    {
-        var firstError = errors.FirstOrDefault();
-        var statusCode = firstError is null
-            ? StatusCodes.Status500InternalServerError
-            : GetStatusCodeFromErrorType(firstError.Type);
-
-        return new ObjectResult(Envelope.Error(errors)) { StatusCode = statusCode };
-    }
 
     private static int GetStatusCodeFromErrorType(ErrorType errorType) =>
         errorType switch
         {
-            ErrorType.Validation => StatusCodes.Status400BadRequest,
-            ErrorType.NotFound => StatusCodes.Status404NotFound,
-            ErrorType.Conflict => StatusCodes.Status409Conflict,
-            ErrorType.Failure => StatusCodes.Status500InternalServerError,
-            _ => StatusCodes.Status500InternalServerError
+            ErrorType.VALIDATION => StatusCodes.Status400BadRequest,
+            ErrorType.AUTHENTICATION => StatusCodes.Status401Unauthorized,
+            ErrorType.AUTHORIZATION => StatusCodes.Status403Forbidden,
+            ErrorType.NOT_FOUND => StatusCodes.Status404NotFound,
+            ErrorType.CONFLICT => StatusCodes.Status409Conflict,
+            _ => StatusCodes.Status500InternalServerError,
         };
 }
