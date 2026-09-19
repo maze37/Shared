@@ -2,11 +2,14 @@
 
 public static class GeneralErrors
 {
-    public static Error ValueIsInvalid(string? fieldName = null)
+    public static Error ValueIsInvalid(string? fieldName = null, string? message = null)
     {
-        return fieldName == null
-            ? Error.Validation("value.is.invalid", "Некорректное значение")
-            : Error.Validation("value.is.invalid", $"Некорректное значение поля «{fieldName}»");
+        string text = message
+                      ?? (fieldName == null
+                          ? "Некорректное значение"
+                          : $"Некорректное значение поля «{fieldName}»");
+
+        return Error.Validation("value.is.invalid", text, fieldName);
     }
 
     public static Error NotFound(Guid? id = null, string? entityName = null)
